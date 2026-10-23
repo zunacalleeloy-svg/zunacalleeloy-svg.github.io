@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TRIPDENT - Clínica Dental</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <style>
+            * {
+                box-sizing:border-box;
+                margin:0;
+                padding:0;
+            }
+            html {
+                scroll-behavior:smooth;
+            }
+            body {
+                font-family:Poppins,sans-serif;
+                background:#0b1220;
+                color:#fff;
+            }
+            .view {
+                display:none!important;
+            }
+            .view.active {
+                display:block!important;
+            }
+            button {
+                font-family:Poppins,sans-serif;
+            }
+            .header {
+                position:fixed;
+                top:0;
+                width:100%;
+                z-index:100;
+                background:#080e19f5;
+                border-bottom:1px solid #263244;
+                padding:16px 6%;
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+            }
+            .logo {
+                color:#43c6cc;
+                font-size:24px;
+                font-weight:bold;
+            }
+            .logo {
+                display:flex;
+                align-items:center;
+                gap:10px;
+            }
+            .logo img {
+                height:42px;
+                width:auto;
+                object-fit:contain;
+            }
+            .nav {
+                display:flex;
+                gap:18px;
+                align-items:center;
+                flex-wrap:wrap;
+            }
+            .nav a {
+                color:#fff;
+                text-decoration:none;
+                font-size:13px;
+                transition:.3s;
+            }
+            .nav a:hover {
+                color:#43c6cc;
+            }
+            .nav button,.next,.contact-form button {
+                background:#43c6cc;
+                color:#071018;
+                border:0;
+                border-radius:9px;
+                padding:11px 16px;
+                font-weight:bold;
+                cursor:pointer;
+                transition:.3s;
+            }
+            .nav button:hover,.next:hover,.contact-form button:hover {
+                transform:translateY(-2px);
+                opacity:.9;
+            }
+
+            /* INICIO */
+            .hero {
+    position:relative;
+    overflow:hidden;
+    min-height:100vh;
+    background:#0b1220;
+    display:flex;
+    align-items:center;
+    padding:100px 8%;
+}
+.hero-bg-video {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    min-width:100%;
+    min-height:100%;
+    object-fit:cover;
+    object-position:75% center;
+    z-index:0;
+    transform:scale(1);
+}
+.hero::after {
+    content:"";
+    position:absolute;
+    inset:0;
+           background:linear-gradient(90deg,rgba(5,10,18,.85) 0%,rgba(5,10,18,.55) 50%,rgba(5,10,18,.1) 100%);
+                z-index:1;
+            }
+           .hero-content {
+                max-width:700px;
+                position:relative;
+                z-index:2;
+            } 
+            .hero-content span,.section-title span,.booking-title span {
+                color:#43c6cc;
+                font-weight:bold;
+                letter-spacing:2px;
+                font-size:13px;
+            }
+            .hero h1 {
+                font-size:58px;
+                line-height:1.1;
+                margin:15px 0;
+            }
+            .hero h1 strong {
+                color:#43c6cc;
+            }
+            .hero p {
+                color:#d1d8e2;
+                line-height:1.8;
+            }
+            .hero-info {
+                display:flex;
+                gap:10px;
+                flex-wrap:wrap;
+                margin-top:25px;
+            }
+            .hero-info div {
+                background:#111827dd;
+                border:1px solid #344054;
+                border-radius:9px;
+                padding:11px;
+            }
+            /* EMERGENCIAS */
+            .emergency-btn {
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:25px;
+    background:#e63946;
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    padding:15px 26px;
+    border-radius:12px;
+    animation:pulso 1.8s infinite;
+    transition:.3s;
+}
+.emergency-btn:hover {
+    transform:translateY(-2px);
+    opacity:.9;
+}
+@keyframes pulso {
+    0% { box-shadow:0 0 0 0 #e6394699; }
+    70% { box-shadow:0 0 0 16px #e6394600; }
+    100% { box-shadow:0 0 0 0 #e6394600; }
+}
+            /* SECCIONES */
+            section {
+                background:#0b1220!important;
+                min-height:100vh;
+                padding:110px 7% 70px;
+            }
+            #inicio {
+                padding:0;
+            }
+            .section-wrap,.booking-wrap {
+                max-width:1200px;
+                margin:auto;
+            }
+            .section-title,.booking-title {
+                text-align:center;
+                margin-bottom:40px;
+            }
+            .section-title h2,.booking-title h2 {
+                font-size:36px;
+                margin:10px 0;
+            }
+            .section-title p,.booking-title p {
+                color:#aeb8c7;
+            }
+
+            /* SERVICIOS */
+            .services-grid {
+                display:grid;
+                grid-template-columns:repeat(3,1fr);
+                gap:22px;
+            }
+            .service-card,.blog-card,.doctor-card {
+                background:#111827;
+                border:1px solid #263244;
+                border-radius:18px;
+                overflow:hidden;
+                transition:.3s;
+            }
+            .service-card:hover,.blog-card:hover {
+                transform:translateY(-5px);
+                border-color:#43c6cc;
+            }
+            .service-card img,.blog-card img {
+                width:100%;
+                height:190px;
+                object-fit:cover;
+                background:#1f2937;
+            }
+            .service-card div,.blog-card div,.doctor-card div {
+                padding:22px;
+            }
+            .service-card h3 {
+                margin-bottom:8px;
+            }
+            .service-card p,.blog-card p {
+                color:#9ca8b8;
+                line-height:1.6;
+                font-size:14px;
+            }
+            .price {
+                color:#43c6cc!important;
+                font-weight:bold;
+                margin:8px 0;
+            }
+            .service-number {
+                display:inline-flex;
+                width:35px;
+                height:35px;
+                border-radius:50%;
+                background:#43c6cc;
+                color:#071018;
+                align-items:center;
+                justify-content:center;
+                font-weight:bold;
+                margin-bottom:10px;
+            }
+
+            /* ESPECIALISTAS */
+            .doctors-grid {
+                display:grid;
+                grid-template-columns:repeat(2,1fr);
+                gap:25px;
+                max-width:1000px;
+                margin:auto;
+            }
+            .doctor-card:hover {
+                border-color:#43c6cc;
+                transform:translateY(-4px);
+            }
+            .doctor-card img {
+                width:100%;
+                height:300px;
+                object-fit:cover;
+                background:#1f2937;
+            }
+            .doctor-card b {
+                color:#43c6cc;
+                font-size:14px;
+            }
+            .doctor-card p {
+                color:#9ca8b8;
+                line-height:1.6;
+                margin-top:12px;
+            }
+
+            /* TESTIMONIOS */
+            .testimonials-grid {
+                display:grid;
+                grid-template-columns:repeat(3,1fr);
+                gap:22px;
+            }
+            .testimonial {
+                background:#111827;
+                border:1px solid #263244;
+                border-radius:18px;
+                padding:27px;
+                transition:.3s;
+            }
+            .testimonial:hover {
+                border-color:#43c6cc;
+                transform:translateY(-3px);
+            }
+            .stars {
+                color:#43c6cc;
+                letter-spacing:3px;
+            }
+            .testimonial p {
+                color:#d1d5db;
+                line-height:1.7;
+                margin:15px 0;
+            }
+            .person {
+                display:flex;
+                gap:10px;
+                align-items:center;
+            }
+            .person i {
+                font-style:normal;
+                background:#43c6cc;
+                color:#071018;
+                width:40px;
+                height:40px;
+                border-radius:50%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-weight:bold;
+            }
+            .person small {
+                display:block;
+                color:#8f9bab;
+            }
+
+            /* BLOG */
+            .blog-grid {
+                display:grid;
+                grid-template-columns:repeat(3,1fr);
+                gap:22px;
+            }
+            .blog-card small {
+                color:#43c6cc;
+            }
+            .blog-card h3 {
+                margin:8px 0;
+            }
+            /* TARJETAS GIRATORIAS (blog, servicios y especialistas) */
+            .flip-card {
+                background:none;
+                border:0;
+                overflow:visible;
+                perspective:1000px;
+                cursor:pointer;
+            }
+            .flip-card:hover {
+                transform:none;
+            }
+            .blog-card.flip-card { height:350px; }
+            .service-card.flip-card { height:380px; }
+            .doctor-card.flip-card { height:450px; }
+
+            .flip-card .flip-inner {
+                position:relative;
+                width:100%;
+                height:100%;
+                padding:0;
+                transition:transform .7s;
+                transform-style:preserve-3d;
+            }
+            .flip-card.flipped .flip-inner {
+                transform:rotateY(180deg);
+            }
+            .flip-card .flip-front,
+            .flip-card .flip-back {
+                position:absolute;
+                inset:0;
+                padding:0;
+                background:#111827;
+                border:1px solid #263244;
+                border-radius:18px;
+                overflow:hidden;
+                backface-visibility:hidden;
+                -webkit-backface-visibility:hidden;
+                transition:border-color .3s;
+            }
+            .flip-card:hover .flip-front,
+            .flip-card:hover .flip-back {
+                border-color:#43c6cc;
+            }
+            .flip-card .flip-back {
+                transform:rotateY(180deg);
+                padding:26px;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                text-align:center;
+            }
+            .flip-card .flip-back h3 {
+                color:#43c6cc;
+            }
+            .flip-card .flip-back p {
+                margin-top:12px;
+                font-size:15px;
+            }
+            .flip-hint {
+                display:block;
+                margin-top:10px;
+                font-size:12px;
+                color:#8f9bab;
+            }
+            /* RESERVAS */
+            .booking-grid {
+                display:grid;
+                grid-template-columns:repeat(3,1fr);
+                gap:18px;
+            }
+            .choice {
+                padding:25px;
+                background:#111827;
+                border:1px solid #263244;
+                border-radius:18px;
+                color:#fff;
+                text-align:left;
+                cursor:pointer;
+                transition:.3s;
+            }
+            .choice:hover,.choice.selected {
+                border-color:#43c6cc;
+                transform:translateY(-3px);
+            }
+            .choice strong {
+                font-size:30px;
+                color:#43c6cc;
+            }
+            .choice p {
+                color:#9ca8b8;
+                margin-top:8px;
+            }
+            .choice .price {
+                font-size:15px;
+            }
+            .booking-actions {
+                display:flex;
+                justify-content:space-between;
+                margin-top:30px;
+            }
+            .back,.next {
+                border:0;
+                border-radius:9px;
+                padding:13px 22px;
+                cursor:pointer;
+                font-weight:bold;
+            }
+            .back {
+                background:#1f2937;
+                color:#fff;
+            }
+            .booking-doctors {
+                display:grid;
+                grid-template-columns:repeat(2,1fr);
+                gap:25px;
+                max-width:850px;
+                margin:auto;
+            }
+            .doctor-choice {
+                background:#111827;
+                border:1px solid #263244;
+                border-radius:18px;
+                color:#fff;
+                padding:18px;
+                text-align:left;
+                cursor:pointer;
+                transition:.3s;
+            }
+            .doctor-choice:hover,.doctor-choice.selected {
+                border-color:#43c6cc;
+            }
+            .doctor-choice img {
+                width:100%;
+                height:300px;
+                object-fit:cover;
+                border-radius:12px;
+                background:#1f2937;
+            }
+            .doctor-choice h3 {
+                margin:12px 0 5px;
+            }
+            .doctor-choice b {
+                color:#43c6cc;
+            }
+
+.blog-card {
+    background:none;
+    border:0;
+    overflow:visible;
+    perspective:1000px;
+    height:350px;
+    cursor:pointer;
+}
+.blog-card:hover { transform:none; }
+.blog-card .flip-inner {
+    position:relative;
+    width:100%;
+    height:100%;
+    padding:0;
+    transition:transform .7s;
+    transform-style:preserve-3d;
+}
+.blog-card.flipped .flip-inner { transform:rotateY(180deg); }
+.blog-card .flip-front,
+.blog-card .flip-back {
+    position:absolute;
+    inset:0;
+    padding:0;
+    background:#111827;
+    border:1px solid #263244;
+    border-radius:18px;
+    overflow:hidden;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    transition:border-color .3s;
+}
+.blog-card:hover .flip-front,
+.blog-card:hover .flip-back { border-color:#43c6cc; }
+.blog-card .flip-back {
+    transform:rotateY(180deg);
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.blog-card .flip-back h3 { color:#43c6cc; }
+.blog-card .flip-back p { margin-top:12px; font-size:15px; }
+.flip-hint {
+    display:block;
+    margin-top:10px;
+    font-size:12px;
+    color:#8f9bab;
+}
+            /* CALENDARIO */
+            .calendar-box,.patient-form {
+                background:#111827;
+                border:1px solid #263244;
+                border-radius:18px;
+                padding:28px;
+            }
+            .calendar-box>h3 {
+                text-align:center;
+                margin-bottom:20px;
+            }
+            .days {
+                display:grid;
+                grid-template-columns:repeat(7,1fr);
+                gap:7px;
+            }
+            .day,.hour {
+                background:#1f2937;
+                color:#fff;
+                border:1px solid #344054;
+                border-radius:8px;
+                padding:11px;
+                cursor:pointer;
+            }
+            .day:hover,.day.selected,.hour:hover,.hour.selected {
+                background:#43c6cc;
+                color:#071018;
+            }
+            .hours-title {
+                margin:25px 0 12px;
+            }
+            .hours {
+                display:flex;
+                flex-wrap:wrap;
+                gap:8px;
+            }
+
+            /* FORMULARIO */
+            .patient-form label,.contact-form label {
+                display:block;
+                font-weight:bold;
+                margin-bottom:16px;
+            }
+            .patient-form input,.contact-form input,.contact-form textarea {
+                display:block;
+                width:100%;
+                margin-top:7px;
+                background:#1f2937;
+                color:#fff;
+                border:1px solid #344054;
+                border-radius:8px;
+                padding:12px;
+                outline:none;
+            }
+            .patient-form input:focus,.contact-form input:focus,.contact-form textarea:focus {
+                border-color:#43c6cc;
+            }
+            .summary {
+                background:#0b1220;
+                padding:18px;
+                border-radius:10px;
+            }
+            .summary h3 {
+                color:#43c6cc;
+                margin-bottom:10px;
+            }
+            .summary p {
+                color:#aeb8c7;
+                margin:7px 0;
+            }
+
+            /* CONFIRMACIÓN */
+            .confirmation {
+                max-width:650px;
+                margin:auto;
+                text-align:center;
+            }
+            .check {
+                margin:auto auto 18px;
+                width:70px;
+                height:70px;
+                border-radius:50%;
+                background:#43c6cc;
+                color:#071018;
+                font-size:40px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            }
+            .check::after {
+                content:"✓";
+            }
+            .confirmation>span {
+                color:#43c6cc;
+                font-weight:bold;
+            }
+            .confirmation h2 {
+                font-size:35px;
+                margin:10px 0;
+            }
+            .confirmation>p {
+                color:#aeb8c7;
+            }
+            .receipt {
+                background:#111827;
+                border:1px solid #263244;
+                border-radius:18px;
+                padding:22px;
+                text-align:left;
+                margin:25px 0;
+            }
+            .receipt p {
+                display:flex;
+                justify-content:space-between;
+                padding:11px;
+                border-bottom:1px solid #263244;
+                color:#9ca8b8;
+            }
+            .receipt b {
+                color:#fff;
+            }
+            .confirm-buttons {
+                display:flex;
+                flex-direction:column;
+                gap:10px;
+            }
+            .confirm-buttons button {
+                border:0;
+                border-radius:9px;
+                padding:14px;
+                background:#43c6cc;
+                font-weight:bold;
+                cursor:pointer;
+            }
+            .confirm-buttons button:not(:first-child) {
+                background:#1f2937;
+                color:#fff;
+            }
+
+            /* CONTACTO */
+            .contact-grid {
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:25px;
+            }
+            .contact-form,.map-box {
+                background:#111827;
+                border:1px solid #263244;
+                border-radius:18px;
+                padding:28px;
+            }
+            .contact-form p,.map-box p {
+                color:#9ca8b8;
+                margin-bottom:20px;
+            }
+            .contact-form button {
+                width:100%;
+            }
+            .map-box iframe {
+                width:100%;
+                height:390px;
+                border:0;
+                border-radius:12px;
+            }
+
+            /* FOOTER */
+            footer {
+                background:#080e19!important;
+                border-top:1px solid #263244;
+                padding:50px 7% 20px;
+            }
+            .footer-grid {
+                max-width:1150px;
+                margin:auto;
+                display:grid;
+                grid-template-columns:repeat(4,1fr);
+                gap:30px;
+            }
+            .footer-grid h3 {
+                margin-bottom:12px;
+            }
+            .footer-grid p,.footer-grid a {
+                color:#8f9bab;
+                font-size:14px;
+                line-height:1.8;
+                text-decoration:none;
+                display:block;
+            }
+            .footer-logo {
+                color:#43c6cc;
+                font-size:22px;
+                font-weight:bold;
+            }
+            .social {
+                display:flex;
+                gap:9px;
+                margin-top:15px;
+            }
+            .social a {
+                background:#1f2937;
+                width:35px;
+                height:35px;
+                border-radius:50%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            }
+            .footer-bottom {
+                text-align:center;
+                border-top:1px solid #1f2937;
+                margin-top:30px;
+                padding-top:18px;
+                color:#707b8c;
+                font-size:13px;
+            }
+
+            /* EXTRA */
+            .tip-list {
+                display:grid;
+                grid-template-columns:repeat(2,1fr);
+                gap:18px;
+                margin-top:25px;
+            }
+            .tip {
+                background:#111827;
+                border:1px solid #263244;
+                border-radius:15px;
+                padding:20px;
+            }
+            .tip i {
+                color:#43c6cc;
+                font-size:25px;
+                margin-bottom:10px;
+            }
+            .tip h3 {
+                margin-bottom:7px;
+            }
+            .tip p {
+                color:#9ca8b8;
+                line-height:1.6;
+            }
+
+            /* TESTIMONIOS: FORMULARIO Y MAPA */
+            .testimonial-form {
+                max-width:700px;
+                margin:40px auto 0;
+            }
+            .map-wrap {
+                max-width:800px;
+                margin:auto;
+            }
+            /* RESPONSIVE */
+            @media(max-width:900px) {
+                .services-grid,.blog-grid,.testimonials-grid {
+                    grid-template-columns:repeat(2,1fr);
+                }
+                .footer-grid {
+                    grid-template-columns:repeat(2,1fr);
+                }
+                .contact-grid {
+                    grid-template-columns:1fr;
+                }
+            }
+            @media(max-width:600px) {
+                .header {
+                    display:block;
+                }
+                .nav {
+                    margin-top:10px;
+                    gap:9px;
+                }
+                .hero h1 {
+                    font-size:40px;
+                }
+                .services-grid,.blog-grid,.testimonials-grid,.booking-grid,.doctors-grid,.booking-doctors,.footer-grid,.tip-list {
+                    grid-template-columns:1fr;
+                }
+                .section-title h2,.booking-title h2 {
+                    font-size:28px;
+                }
+                .booking-actions {
+                    flex-direction:column;
+                    gap:10px;
+                }
+                .days {
+                    gap:3px;
+                }
+                .day {
+                    padding:8px 2px;
+                    font-size:11px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="logo">
+    <img src="img/logo-icono.png" alt="TripDent">
+    TripDent
+</div>
+            <nav class="nav">
+                <a href="#" onclick="go('inicio');return false">Inicio</a>
+                <a href="#" onclick="go('servicios');return false">Servicios</a>
+                <a href="#" onclick="go('especialistas');return false">Especialistas</a>
+                <a href="#" onclick="go('testimonios');return false">Testimonios</a>
+                <a href="#" onclick="go('blog');return false">Blog</a>
+                <a href="#" onclick="go('contacto');return false">Contacto</a>
+                <button onclick="go('paso1')">Agendar cita</button>
+            </nav>
+        </header>
+
+        <section id="inicio" class="view active">
+               <div class="hero">
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="auto">
+        <source src="img/fondovideo.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+                    <span>CLÍNICA DENTAL TRIPDENT</span>
+                    <h1>
+                        Tu sonrisa,
+                        <br>
+                        <strong>nuestra especialidad.</strong>
+                    </h1>
+                    <p>Atención odontológica profesional para cuidar tu salud y ayudarte a lucir una sonrisa saludable.</p>
+                    <div class="hero-info">
+                        <div>
+                            <i class="fas fa-user-doctor"></i>
+                            Atención profesional
+                        </div>
+                        <div>
+                            <i class="fas fa-tooth"></i>
+                            Tratamientos modernos
+                        </div>
+                        <div>
+                            <i class="fas fa-heart"></i>
+                            Atención personalizada
+                        </div>
+                    </div>
+
+                    <a href="tel:+59175768836" class="emergency-btn">
+                       <i class="fas fa-phone-volume"></i>
+                          Emergencias · Llamar al doctor
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="view">
+            <div class="section-wrap">
+                <div class="section-title">
+                    <span>NUESTROS SERVICIOS</span>
+                    <h2>Tratamientos para tu sonrisa</h2>
+                    <p>Conoce los servicios disponibles en Tripdent.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="img/limpiezadental1.jpeg">
+                        <div>
+                            <span class="service-number">01</span>
+                            <h3>Limpieza dental</h3>
+                            <p class="price">Bs 80</p>
+                            <p>Eliminación profesional de placa y sarro para mantener una buena higiene bucal.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/blanquiamiento.jpeg">
+                        <div>
+                            <span class="service-number">02</span>
+                            <h3>Blanqueamiento dental</h3>
+                            <p class="price">Bs 350</p>
+                            <p>Tratamiento estético para mejorar el aspecto de la sonrisa.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/ortodoncia.jpeg">
+                        <div>
+                            <span class="service-number">03</span>
+                            <h3>Ortodoncia</h3>
+                            <p class="price">Bs 250</p>
+                            <p>Tratamientos para mejorar la alineación de los dientes.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/implante.jpeg">
+                        <div>
+                            <span class="service-number">04</span>
+                            <h3>Implantes dentales</h3>
+                            <p class="price">Bs 2.500</p>
+                            <p>Soluciones para recuperar piezas dentales y mejorar la función de la boca.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/ortodoncia%20general.jpeg">
+                        <div>
+                            <span class="service-number">05</span>
+                            <h3>Odontología general</h3>
+                            <p class="price">Bs 100</p>
+                            <p>Revisión, diagnóstico y atención odontológica general.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/estetica%20dental.jpeg">
+                        <div>
+                            <span class="service-number">06</span>
+                            <h3>Estética dental</h3>
+                            <p class="price">Bs 200</p>
+                            <p>Tratamientos destinados a mejorar la apariencia de la sonrisa.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/Consulta%20odontolog%C3%ADca.jpeg">
+                        <div>
+                            <span class="service-number">07</span>
+                            <h3>Consulta odontológica</h3>
+                            <p class="price">Bs 100</p>
+                            <p>Evaluación inicial para conocer el estado general de la salud bucal.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/restauracion%20dental.jpeg">
+                        <div>
+                            <span class="service-number">08</span>
+                            <h3>Restauraciones dentales</h3>
+                            <p class="price">Bs 150</p>
+                            <p>Tratamiento de dientes afectados por caries o daños.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/extraccion%20dental.jpeg">
+                        <div>
+                            <span class="service-number">09</span>
+                            <h3>Extracción dental</h3>
+                            <p class="price">Bs 120</p>
+                            <p>Procedimiento realizado después de una evaluación odontológica.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/endodoncia.jpeg">
+                        <div>
+                            <span class="service-number">10</span>
+                            <h3>Endodoncia</h3>
+                            <p class="price">Bs 600</p>
+                            <p>Tratamiento dirigido a piezas dentales que presentan afectación de la pulpa.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/Odontopediatr%C3%ADa.jpeg">
+                        <div>
+                            <span class="service-number">11</span>
+                            <h3>Odontopediatría</h3>
+                            <p class="price">Bs 120</p>
+                            <p>Atención dental enfocada en el cuidado de los niños.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/Control%20ortodoncia.jpeg">
+                        <div>
+                            <span class="service-number">12</span>
+                            <h3>Control de ortodoncia</h3>
+                            <p class="price">Bs 150</p>
+                            <p>Revisión periódica del tratamiento de ortodoncia.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="img/evaluacion%20estetica.jpeg">
+                        <div>
+                            <span class="service-number">13</span>
+                            <h3>Evaluación estética</h3>
+                            <p class="price">Bs 100</p>
+                            <p>Evaluación de las necesidades estéticas de cada paciente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="especialistas" class="view">
+            <div class="section-wrap">
+                <div class="section-title">
+                    <span>NUESTRO EQUIPO</span>
+                    <h2>Especialistas</h2>
+                    <p>Profesionales preparados para cuidar tu salud dental.</p>
+                </div>
+                <div class="doctors-grid">
+                    <div class="doctor-card">
+                    <img src="img/Dr%20Eloy%20Zuna.jpeg">
+                        <div>
+                            <h3>Dr. Eloy Zuna Calle</h3>
+                            <b>Odontología General</b>
+                            <p>Profesional enfocado en prevención, diagnóstico y tratamiento odontológico.</p>
+                        </div>
+                    </div>
+                    <div class="doctor-card">
+                        <img src="img/Dr.jpeg">
+                        <div>
+                            <h3>Dr. Wilson Zuna</h3>
+                            <b>Odontología Restauradora</b>
+                            <p>Atención orientada a la conservación y restauración de las piezas dentales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <section id="testimonios" class="view">
+            <div class="section-wrap">
+                <div class="section-title">
+                    <span>TESTIMONIOS</span>
+                    <h2>Lo que dicen nuestros pacientes</h2>
+                    <p>Experiencias de quienes confiaron en Tripdent.</p>
+                </div>
+                <div class="testimonials-grid" id="listaTestimonios">
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>“Excelente atención y muy buen trato.”</p>
+                        <div class="person">
+                            <i>M</i>
+                            <div>
+                                <b>María López</b>
+                                <small>Paciente</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>“El personal fue muy amable y profesional.”</p>
+                        <div class="person">
+                            <i>J</i>
+                            <div>
+                                <b>Juan Pérez</b>
+                                <small>Paciente</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>“Muy buena experiencia y excelente atención.”</p>
+                        <div class="person">
+                            <i>A</i>
+                            <div>
+                                <b>Ana Martínez</b>
+                                <small>Paciente</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>“Me explicaron muy bien cada parte del tratamiento.”</p>
+                        <div class="person">
+                            <i>L</i>
+                            <div>
+                                <b>Laura Fernández</b>
+                                <small>Paciente</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>“Una atención agradable y un ambiente cómodo.”</p>
+                        <div class="person">
+                            <i>D</i>
+                            <div>
+                                <b>Diego Ramírez</b>
+                                <small>Paciente</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>“Quedé muy conforme con la atención recibida.”</p>
+                        <div class="person">
+                            <i>C</i>
+                            <div>
+                                <b>Carla Flores</b>
+                                <small>Paciente</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form testimonial-form">
+                    <h3>Comparte tu experiencia</h3>
+                    <p>Tu opinión aparecerá en esta sección.</p>
+                    <label>
+                        Nombre
+                        <input id="testimonioNombre" type="text" placeholder="Escribe tu nombre">
+                    </label>
+                    <label>
+                        Correo
+                        <input id="testimonioCorreo" type="email" placeholder="correo@ejemplo.com">
+                    </label>
+                    <label>
+                        Tu experiencia
+                        <textarea id="testimonioMensaje" rows="5" placeholder="Escribe tu experiencia..."></textarea>
+                    </label>
+                    <button onclick="publicarTestimonio()">Publicar testimonio</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="view">
+            <div class="section-wrap">
+                <div class="section-title">
+                    <span>BLOG</span>
+                    <h2>Consejos para cuidar tu sonrisa</h2>
+                    <p>Información y consejos para mantener una buena salud bucal.</p>
+                </div>
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <img src="img/Salud%20bucal.jpeg">
+                        <div>
+                            <small>Salud bucal</small>
+                            <h3>¿Por qué es importante la limpieza dental?</h3>
+                            <p>La limpieza ayuda a eliminar acumulaciones de placa y sarro y forma parte de una buena higiene.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/prevencion1.jpeg">
+                        <div>
+                            <small>Prevención</small>
+                            <h3>Hábitos para una sonrisa saludable</h3>
+                            <p>Cepillado, hilo dental y controles periódicos son hábitos importantes para cuidar la boca.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/estetica.jpeg">
+                        <div>
+                            <small>Estética</small>
+                            <h3>Cuida el aspecto de tus dientes</h3>
+                            <p>Una buena higiene ayuda a mantener una sonrisa cuidada y saludable.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/cepillado.jpeg">
+                        <div>
+                            <small>Cepillado</small>
+                            <h3>La importancia del cepillado</h3>
+                            <p>Cepillarse los dientes de forma regular es una parte fundamental de la higiene bucal.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/alimentacion.jpeg">
+                        <div>
+                            <small>Alimentación</small>
+                            <h3>Alimentos y salud dental</h3>
+                            <p>Una alimentación equilibrada también puede formar parte del cuidado general de la boca.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/ni%C3%B1os.jpeg">
+                        <div>
+                            <small>Niños</small>
+                            <h3>¿Cómo enseñar higiene dental a los niños?</h3>
+                            <p>Crear rutinas desde pequeños puede ayudar a que los niños aprendan a cuidar sus dientes.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/ortodoncia22.jpeg">
+                        <div>
+                            <small>Ortodoncia</small>
+                            <h3>Consejos para pacientes con ortodoncia</h3>
+                            <p>La higiene diaria es especialmente importante cuando se utilizan aparatos de ortodoncia.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/prevencion2.jpeg">
+                        <div>
+                            <small>Prevención</small>
+                            <h3>¿Por qué visitar al odontólogo?</h3>
+                            <p>Las revisiones permiten evaluar el estado general de los dientes y encías.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/higiene.jpeg">
+                        <div>
+                            <small>Higiene</small>
+                            <h3>El uso del hilo dental</h3>
+                            <p>El hilo dental ayuda a limpiar zonas que son difíciles de alcanzar con el cepillo.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/consejos.jpeg">
+                        <div>
+                            <small>Consejos</small>
+                            <h3>No olvides limpiar tu lengua</h3>
+                            <p>La higiene bucal incluye también la limpieza adecuada de la lengua.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/fondo.png">
+                        <div>
+                            <small>Prevención</small>
+                            <h3>Evita hábitos que dañen tus dientes</h3>
+                            <p>Algunos hábitos pueden afectar los dientes, por eso es importante cuidar la forma en que los utilizamos.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="img/cuidado%20diario.jpeg">
+                        <div>
+                            <small>Cuidado diario</small>
+                            <h3>Rutina básica para cuidar tu sonrisa</h3>
+                            <p>Una rutina diaria de higiene ayuda a mantener una boca limpia y cuidada.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tip-list">
+                    <div class="tip">
+                        <i class="fas fa-tooth"></i>
+                        <h3>Cepíllate diariamente</h3>
+                        <p>Mantén una rutina constante de higiene para cuidar tus dientes.</p>
+                    </div>
+                    <div class="tip">
+                        <i class="fas fa-clock"></i>
+                        <h3>No olvides tus controles</h3>
+                        <p>Las revisiones ayudan a conocer el estado de tu salud bucal.</p>
+                    </div>
+                    <div class="tip">
+                        <i class="fas fa-glass-water"></i>
+                        <h3>Toma suficiente agua</h3>
+                        <p>Mantener una buena hidratación es parte del cuidado general.</p>
+                    </div>
+                    <div class="tip">
+                        <i class="fas fa-heart"></i>
+                        <h3>Cuida tu sonrisa</h3>
+                        <p>La prevención y los buenos hábitos son importantes para tu salud dental.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+      
+ <section id="paso1" class="view">
+            <div class="booking-wrap">
+                <div class="booking-title">
+                    <span>PASO 1</span>
+                    <h2>Selecciona un servicio</h2>
+                    <p>Elige el tratamiento que deseas realizar.</p>
+                </div>
+                <div class="booking-grid">
+                    <button class="choice service-choice" onclick="chooseService(this,'Limpieza dental')">
+                        <strong>
+                            <i class="fas fa-tooth"></i>
+                        </strong>
+                        <h3>Limpieza dental</h3>
+                        <p class="price">Bs 80</p>
+                        <p>Cuidado y limpieza profesional.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Blanqueamiento dental')">
+                        <strong>
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                        </strong>
+                        <h3>Blanqueamiento dental</h3>
+                        <p class="price">Bs 350</p>
+                        <p>Mejora el aspecto de tu sonrisa.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Ortodoncia')">
+                        <strong>
+                            <i class="fas fa-teeth"></i>
+                        </strong>
+                        <h3>Ortodoncia</h3>
+                        <p class="price">Bs 250</p>
+                        <p>Mejora de alineación dental.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Implantes dentales')">
+                        <strong>
+                            <i class="fas fa-tooth"></i>
+                        </strong>
+                        <h3>Implantes dentales</h3>
+                        <p class="price">Bs 2.500</p>
+                        <p>Recuperación de piezas dentales.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Odontología general')">
+                        <strong>
+                            <i class="fas fa-user-doctor"></i>
+                        </strong>
+                        <h3>Odontología general</h3>
+                        <p class="price">Bs 100</p>
+                        <p>Revisión general.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Estética dental')">
+                        <strong>
+                            <i class="fas fa-star"></i>
+                        </strong>
+                        <h3>Estética dental</h3>
+                        <p class="price">Bs 200</p>
+                        <p>Cuidado estético dental.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Consulta odontológica')">
+                        <strong>
+                            <i class="fas fa-user-doctor"></i>
+                        </strong>
+                        <h3>Consulta odontológica</h3>
+                        <p class="price">Bs 100</p>
+                        <p>Evaluación inicial.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Restauraciones dentales')">
+                        <strong>
+                            <i class="fas fa-tooth"></i>
+                        </strong>
+                        <h3>Restauraciones dentales</h3>
+                        <p class="price">Bs 150</p>
+                        <p>Tratamiento restaurador.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Odontopediatría')">
+                        <strong>
+                            <i class="fas fa-child"></i>
+                        </strong>
+                        <h3>Odontopediatría</h3>
+                        <p class="price">Bs 120</p>
+                        <p>Atención para niños.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Extracción dental')">
+                        <strong>
+                            <i class="fas fa-tooth"></i>
+                        </strong>
+                        <h3>Extracción dental</h3>
+                        <p class="price">Bs 120</p>
+                        <p>Procedimiento tras una evaluación odontológica.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Endodoncia')">
+                        <strong>
+                            <i class="fas fa-syringe"></i>
+                        </strong>
+                        <h3>Endodoncia</h3>
+                        <p class="price">Bs 600</p>
+                        <p>Tratamiento de la pulpa dental.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Control de ortodoncia')">
+                        <strong>
+                            <i class="fas fa-teeth"></i>
+                        </strong>
+                        <h3>Control de ortodoncia</h3>
+                        <p class="price">Bs 150</p>
+                        <p>Revisión periódica de tu ortodoncia.</p>
+                    </button>
+                    <button class="choice service-choice" onclick="chooseService(this,'Evaluación estética')">
+                        <strong>
+                            <i class="fas fa-magnifying-glass"></i>
+                        </strong>
+                        <h3>Evaluación estética</h3>
+                        <p class="price">Bs 100</p>
+                        <p>Evaluación de tus necesidades estéticas.</p>
+                    </button>
+                </div>
+                <div class="booking-actions">
+                    <button class="back" onclick="go('inicio')">← Volver</button>
+                    <button class="next" onclick="nextTo('paso2')">Continuar →</button>
+                </div>
+            </div>
+        </section>
+        <section id="paso2" class="view">
+            <div class="booking-wrap">
+                <div class="booking-title">
+                    <span>PASO 2</span>
+                    <h2>Selecciona un especialista</h2>
+                    <p>Elige el profesional que deseas que te atienda.</p>
+                </div>
+                <div class="booking-doctors">
+                    <button class="doctor-choice" onclick="chooseDoctor(this,'Dr. Eloy Zuna Calle')">
+                        <img src="img/Dr%20Eloy%20Zuna.jpeg">
+                        <h3>Dr Eloy Zuna Calle</h3>
+                        <b>Odontología General</b>
+                    </button>
+                    <button class="doctor-choice" onclick="chooseDoctor(this,'Dr. Wilson Zuna')">
+                        <img src="img/doctor-2.jpg" alt="Dr. Wilson Zuna">
+                        <h3>Dr. Wilson Zuna</h3>
+                        <b>Odontología Restauradora</b>
+                    </button>
+                </div>
+                <div class="booking-actions">
+                    <button class="back" onclick="go('paso1')">← Volver</button>
+                    <button class="next" onclick="nextTo('paso3')">Continuar →</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="paso3" class="view">
+            <div class="booking-wrap">
+                <div class="booking-title">
+                    <span>PASO 3</span>
+                    <h2>Selecciona fecha y hora</h2>
+                    <p>Elige el día y horario.</p>
+                </div>
+                <div class="calendar-box">
+                    <h3>Octubre 2026</h3>
+                    <div class="days" id="calendarDays"></div>
+                    <h3 class="hours-title">Horarios disponibles</h3>
+                    <div class="hours" id="hours"></div>
+                </div>
+                <div class="booking-actions">
+                    <button class="back" onclick="go('paso2')">← Volver</button>
+                    <button class="next" onclick="nextTo('paso4')">Continuar →</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="paso4" class="view">
+            <div class="booking-wrap">
+                <div class="booking-title">
+                    <span>PASO 4</span>
+                    <h2>Tus datos</h2>
+                    <p>Completa tus datos para confirmar.</p>
+                </div>
+                <div class="patient-form">
+                    <label>
+                        Nombre completo
+                        <input id="patientName" type="text" placeholder="Escribe tu nombre">
+                    </label>
+                    <label>
+                        Número de celular
+                        <input id="patientPhone" type="tel" placeholder="Ej. 12345678">
+                    </label>
+                    <label>
+                        Correo electrónico
+                        <input id="patientEmail" type="email" placeholder="correo@ejemplo.com">
+                    </label>
+                    <div class="summary">
+                        <h3>Resumen</h3>
+                        <p>
+                            Servicio:
+                            <b id="sumService">-</b>
+                        </p>
+                        <p>
+                            Especialista:
+                            <b id="sumDoctor">-</b>
+                        </p>
+                        <p>
+                            Fecha:
+                            <b id="sumDate">-</b>
+                        </p>
+                        <p>
+                            Hora:
+                            <b id="sumTime">-</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="booking-actions">
+                    <button class="back" onclick="go('paso3')">← Volver</button>
+                    <button class="next" onclick="confirmBooking()">Confirmar cita →</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="paso5" class="view">
+            <div class="confirmation">
+                <div class="check"></div>
+                <span>CITA CONFIRMADA</span>
+                <h2>¡Tu cita ha sido registrada!</h2>
+                <p>Revisa los datos y envía la solicitud.</p>
+                <div class="receipt">
+                    <p>
+                        Paciente
+                        <b id="confirmPatient">-</b>
+                    </p>
+                    <p>
+                        Servicio
+                        <b id="confirmService">-</b>
+                    </p>
+                    <p>
+                        Especialista
+                        <b id="confirmDoctor">-</b>
+                    </p>
+                    <p>
+                        Fecha
+                        <b id="confirmDate">-</b>
+                    </p>
+                    <p>
+                        Hora
+                        <b id="confirmTime">-</b>
+                    </p>
+                </div>
+                <div class="confirm-buttons">
+                    <button onclick="sendWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        Enviar cita por WhatsApp
+                    </button>
+                    <button onclick="window.print()">
+                        <i class="fas fa-print"></i>
+                        Imprimir comprobante
+                    </button>
+                    <button onclick="go('inicio')">Volver al inicio</button>
+                </div>
+            </div>
+        </section>
+
+         <section id="contacto" class="view">
+            <div class="section-wrap">
+                <div class="section-title">
+                    <span>CONTACTO</span>
+                    <h2>Estamos para atenderte</h2>
+                    <p>Encuentra nuestra ubicación y datos de contacto.</p>
+                </div>
+                <div class="map-wrap">
+                    <div class="map-box">
+                        <h3>¿Dónde encontrarnos?</h3>
+                        <iframe src="https://www.google.com/maps?q=Calle+Caro+entre+Arica+y+Tacna,+Oruro,+Bolivia&output=embed" loading="lazy"></iframe>
+                        <p>
+                            <i class="fas fa-location-dot"></i>
+                            Calle Caro entre Arica y Tacna, Oruro, Bolivia
+                        </p>
+                        <p>
+                            <i class="fas fa-phone"></i>
+                            75768836
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <img src="img/logo-icono.png" style="height:36px;vertical-align:middle;margin-right:8px;">
+                        TripDent
+                    </div>
+                    <p>Cuidamos tu sonrisa con atención y compromiso.</p>
+                    <div class="social">
+                        <a href="https://wa.me/59174471518" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Enlaces</h3>
+                    <a href="#" onclick="go('inicio');return false">Inicio</a>
+                    <a href="#" onclick="go('servicios');return false">Servicios</a>
+                    <a href="#" onclick="go('especialistas');return false">Especialistas</a>
+                    <a href="#" onclick="go('testimonios');return false">Testimonios</a>
+                    <a href="#" onclick="go('contacto');return false">Contacto</a>
+                    <a href="#" onclick="go('blog');return false">Blog</a>
+                </div>
+                <div>
+                    <h3>Servicios</h3>
+                    <a href="#" onclick="go('paso1');return false">Limpieza dental</a>
+                    <a href="#" onclick="go('paso1');return false">Blanqueamiento</a>
+                    <a href="#" onclick="go('paso1');return false">Ortodoncia</a>
+                    <a href="#" onclick="go('paso1');return false">Implantes</a>
+                    <a href="#" onclick="go('paso1');return false">Odontología general</a>
+                </div>
+                <div>
+                    <h3>Contacto</h3>
+                    <p>
+                        <i class="fas fa-location-dot"></i>
+                        Oruro, Bolivia
+                    </p>
+                    <p>
+                        <i class="fas fa-phone"></i>
+                        75768836
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Calle Caro entre Arica y Tacna
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <script>
+            /* Si una imagen local no carga, se muestra una de respaldo */
+            const FALLBACK="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=700&q=80";
+            document.addEventListener("error",function(e){
+                if(e.target.tagName==="IMG"&&!e.target.dataset.fb){
+                    e.target.dataset.fb="1";
+                    e.target.src=FALLBACK;
+                }
+            },true);
+
+            /* ESTADO DE LA RESERVA */
+            let state={service:"",specialist:"",date:"",time:"",patientName:"",patientPhone:"",patientEmail:""};
+
+            /* CAMBIAR DE SECCIÓN */
+            function go(id){
+                document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+                const el=document.getElementById(id);
+                if(el){
+                    el.classList.add("active");
+                    window.scrollTo({top:0,behavior:"smooth"});
+                }
+            }
+
+            /* SELECCIONAR SERVICIO */
+            function chooseService(btn,name){
+                document.querySelectorAll(".service-choice").forEach(b=>b.classList.remove("selected"));
+                btn.classList.add("selected");
+                state.service=name;
+                updateSummary();
+            }
+
+            /* SELECCIONAR ESPECIALISTA */
+            function chooseDoctor(btn,name){
+                document.querySelectorAll(".doctor-choice").forEach(b=>b.classList.remove("selected"));
+                btn.classList.add("selected");
+                state.specialist=name;
+                updateSummary();
+            }
+
+            /* SIGUIENTE PASO */
+            function nextTo(id){
+                if(id==="paso2"&&!state.service){alert("Selecciona un servicio.");return;}
+                if(id==="paso3"&&!state.specialist){alert("Selecciona un especialista.");return;}
+                if(id==="paso4"&&(!state.date||!state.time)){alert("Selecciona una fecha y una hora.");return;}
+                updateSummary();
+                go(id);
+            }
+
+            /* CALENDARIO (Octubre 2026 = 31 días) */
+            function buildCalendar(){
+                const d=document.getElementById("calendarDays");
+                const h=document.getElementById("hours");
+                for(let i=1;i<=31;i++){
+                    const b=document.createElement("button");
+                    b.className="day";
+                    b.type="button";
+                    b.textContent=i;
+                    b.onclick=function(){
+                        document.querySelectorAll(".day").forEach(x=>x.classList.remove("selected"));
+                        b.classList.add("selected");
+                        state.date=i+" de octubre de 2026";
+                        updateSummary();
+                    };
+                    d.appendChild(b);
+                }
+                ["09:00","10:00","11:00","12:00","14:00","15:00","16:00","17:00"].forEach(function(hora){
+                    const b=document.createElement("button");
+                    b.className="hour";
+                    b.type="button";
+                    b.textContent=hora;
+                    b.onclick=function(){
+                        document.querySelectorAll(".hour").forEach(y=>y.classList.remove("selected"));
+                        b.classList.add("selected");
+                        state.time=hora;
+                        updateSummary();
+                    };
+                    h.appendChild(b);
+                });
+            }
+
+            /* ACTUALIZAR RESUMEN */
+            function updateSummary(){
+                [["sumService",state.service],["sumDoctor",state.specialist],["sumDate",state.date],["sumTime",state.time]].forEach(function(item){
+                    const el=document.getElementById(item[0]);
+                    if(el)el.textContent=item[1]||"-";
+                });
+            }
+
+            /* CONFIRMAR CITA */
+            function confirmBooking(){
+                state.patientName=document.getElementById("patientName").value.trim();
+                state.patientPhone=document.getElementById("patientPhone").value.trim();
+                state.patientEmail=document.getElementById("patientEmail").value.trim();
+                if(!state.patientName){alert("Escribe tu nombre.");return;}
+                if(!state.patientPhone){alert("Escribe tu número de celular.");return;}
+                if(!state.patientEmail){alert("Escribe tu correo.");return;}
+                document.getElementById("confirmPatient").textContent=state.patientName;
+                document.getElementById("confirmService").textContent=state.service;
+                document.getElementById("confirmDoctor").textContent=state.specialist;
+                document.getElementById("confirmDate").textContent=state.date;
+                document.getElementById("confirmTime").textContent=state.time;
+                go("paso5");
+            }
+
+            /* ENVIAR POR WHATSAPP */
+            function sendWhatsApp(){
+                const message=[
+                    "TRIPDENT - SOLICITUD DE CITA",
+                    "",
+                    "Paciente: "+state.patientName,
+                    "Teléfono: "+state.patientPhone,
+                    "Correo: "+state.patientEmail,
+                    "Servicio: "+state.service,
+                    "Especialista: "+state.specialist,
+                    "Fecha: "+state.date,
+                    "Hora: "+state.time,
+                    "",
+                    "Gracias por comunicarse con Tripdent."
+                ].join("\n");
+                const phoneNumber="59175768836";
+                window.open("https://wa.me/"+phoneNumber+"?text="+encodeURIComponent(message),"_blank");
+            }
+
+            /* LIMPIAR TEXTO */
+            function safe(text){
+                const div=document.createElement("div");
+                div.textContent=text;
+                return div.innerHTML;
+            }
+
+            /* PUBLICAR TESTIMONIO */
+                        /* TESTIMONIOS GUARDADOS EN EL NAVEGADOR */
+            const CLAVE_TESTIMONIOS="tripdentTestimonios";
+
+            function leerTestimonios(){
+                try{
+                    const lista=JSON.parse(localStorage.getItem(CLAVE_TESTIMONIOS));
+                    return Array.isArray(lista)?lista:[];
+                }catch(e){
+                    return [];
+                }
+            }
+
+            function guardarTestimonios(lista){
+                try{
+                    localStorage.setItem(CLAVE_TESTIMONIOS,JSON.stringify(lista));
+                }catch(e){}
+            }
+
+            function crearTarjeta(name,message){
+                const card=document.createElement("div");
+                card.className="testimonial";
+                card.innerHTML=`<div class="stars">★★★★★</div><p>“${safe(message)}”</p><div class="person"><i>${safe(name.charAt(0).toUpperCase())}</i><div><b>${safe(name)}</b><small>Paciente</small></div></div>`;
+                return card;
+            }
+
+            function cargarTestimonios(){
+                const contenedor=document.getElementById("listaTestimonios");
+                leerTestimonios().forEach(function(t){
+                    contenedor.prepend(crearTarjeta(t.name,t.message));
+                });
+            }
+
+            /* PUBLICAR TESTIMONIO */
+            function publicarTestimonio(){
+                const name=document.getElementById("testimonioNombre").value.trim();
+                const email=document.getElementById("testimonioCorreo").value.trim();
+                const message=document.getElementById("testimonioMensaje").value.trim();
+                if(!name){alert("Escribe tu nombre.");return;}
+                if(!email){alert("Escribe tu correo.");return;}
+                if(!message){alert("Escribe tu experiencia.");return;}
+                document.getElementById("listaTestimonios").prepend(crearTarjeta(name,message));
+                const lista=leerTestimonios();
+                lista.push({name:name,message:message});
+                guardarTestimonios(lista);
+                document.getElementById("testimonioNombre").value="";
+                document.getElementById("testimonioCorreo").value="";
+                document.getElementById("testimonioMensaje").value="";
+                alert("¡Gracias por compartir tu experiencia!");
+                go("testimonios");
+            }
+
+            document.addEventListener("DOMContentLoaded",function(){
+    buildCalendar();
+    cargarTestimonios();
+
+    /* TARJETAS GIRATORIAS: blog, servicios y especialistas */
+    document.querySelectorAll(".blog-card,.service-card,.doctor-card").forEach(function(card){
+        const img = card.querySelector("img").outerHTML;
+        const info = card.querySelector("div");
+        const title = info.querySelector("h3").outerHTML;
+        const tagEl = info.querySelector("small,b,.price");
+        const tag = tagEl ? tagEl.outerHTML : "";
+        const descEl = info.querySelector("p:not(.price)");
+        const desc = descEl.outerHTML;
+
+        const frontInfo = info.cloneNode(true);
+        frontInfo.querySelector("p:not(.price)").remove();
+
+        card.classList.add("flip-card");
+        card.innerHTML = `
+            <div class="flip-inner">
+                <div class="flip-front">
+                    ${img}
+                    <div>
+                        ${frontInfo.innerHTML}
+                        <span class="flip-hint"><i class="fas fa-rotate"></i> Toca para ver más</span>
+                    </div>
+                </div>
+                <div class="flip-back">
+                    ${title}
+                    ${tag}
+                    ${desc}
+                </div>
+            </div>`;
+        card.onclick = function(){ card.classList.toggle("flipped"); };
+    });
+});
+        </script>
+    </body>
+</html>
